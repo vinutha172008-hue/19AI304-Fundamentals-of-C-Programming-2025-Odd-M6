@@ -33,7 +33,25 @@ To develop a C program using the static storage class in a function with a param
 ### Step 8:
   Stop
 # Program:
+```
+#include <stdio.h>
+void display(int n){
+    static float value = 1.0;
+    int i;
+    for (i = 1; i <= 5; i++){
+        value = value + 100.25;
+        printf("%.2f  ", value);
+    }
+}
+int main(){
+    int n;
+    scanf("%d", &n);
+    display(n);
+    return 0;
+}
+```
 # Output:
+![alt text](<Screenshot 2025-12-26 231614.png>)
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -79,7 +97,50 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 11:
   Stop
 # Program:
+```
+#include <stdio.h>
+// functions
+int add(int a, int b) { return a + b; }
+int sub(int a, int b) { return a - b; }
+int mul(int a, int b) { return a * b; }
+int divi(int a, int b)
+{
+    if(b == 0)
+    {
+        printf("Cannot divide by zero!\n");
+        return 0;
+    }
+    return a / b;
+}
+int main()
+{
+    int x, y, choice, result;
+    int (*fp)(int, int);
+    printf("Enter two numbers: ");
+    scanf("%d %d", &x, &y);
+    printf("\n1. Add");
+    printf("\n2. Subtract");
+    printf("\n3. Multiply");
+    printf("\n4. Divide");
+    printf("\nEnter your choice: ");
+    scanf("%d", &choice);
+
+    if(choice == 1) fp = add;
+    else if(choice == 2) fp = sub;
+    else if(choice == 3) fp = mul;
+    else if(choice == 4) fp = divi;
+    else
+    {
+        printf("Invalid choice");
+        return 0;
+    }
+    result = fp(x, y);   
+    printf("\nResult = %d\n", result);
+    return 0;
+}
+```
 # Output:
+![alt text](<Screenshot 2025-12-26 231832.png>)
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -123,7 +184,54 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 10:
   Stop
 # Program:
+```
+#include <stdio.h>
+struct Employee {
+    int employeeID;
+    char name[50];
+    float salary;
+};
+int main() {
+    struct Employee employee1, employee2, employee3;
+    printf("Input details for Employee 1:\n");
+    printf("Employee ID: ");
+    scanf("%d", &employee1.employeeID);
+    printf("Name: ");
+    scanf("%s", employee1.name); 
+    printf("Salary: ");
+    scanf("%f", &employee1.salary);
+    printf("\nInput details for Employee 2:\n");
+    printf("Employee ID: ");
+    scanf("%d", &employee2.employeeID);
+    printf("Name: ");
+    scanf("%s", employee2.name);
+    printf("Salary: ");
+    scanf("%f", &employee2.salary);
+    printf("\nInput details for Employee 3:\n");
+    printf("Employee ID: ");
+    scanf("%d", &employee3.employeeID);
+    printf("Name: ");
+    scanf("%s", employee3.name);
+    printf("Salary: ");
+    scanf("%f", &employee3.salary);
+    struct Employee highestSalaryEmployee;
+    if (employee1.salary >= employee2.salary && employee1.salary >= employee3.salary) {
+        highestSalaryEmployee = employee1;
+    } else if (employee2.salary >= employee1.salary && employee2.salary >= employee3.salary) {
+        highestSalaryEmployee = employee2;
+    } else {
+        highestSalaryEmployee = employee3;
+    }
+    printf("\nEmployee with Highest Salary:\n");
+    printf("Employee ID: %d\n", highestSalaryEmployee.employeeID);
+    printf("Name: %s\n", highestSalaryEmployee.name);
+    printf("Salary: %.2f\n", highestSalaryEmployee.salary);
+
+    return 0;
+}
+```
 # Output:
+![alt text](<Screenshot 2025-12-26 232034.png>)
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -166,7 +274,33 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 9:
   Stop
 # Program:
+```
+#include <stdio.h>
+struct Person
+{
+    int birthYear;
+    int currentYear;
+    int age;
+};
+// function to calculate age
+void calcAge(struct Person *p)
+{
+    p->age = p->currentYear - p->birthYear;
+}
+int main()
+{
+    struct Person p;
+    printf("Enter Birth Year: ");
+    scanf("%d", &p.birthYear);
+    printf("Enter Current Year: ");
+    scanf("%d", &p.currentYear);
+    calcAge(&p);   // passing structure as reference
+    printf("\nPresent Age = %d\n", p.age);\
+    return 0;
+}
+```
 # Output:
+![alt text](<Screenshot 2025-12-26 232213.png>)
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -202,7 +336,28 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 10:
   Stop
 # Program:
+```
+#include <stdio.h>
+union Data
+{
+    int num;
+    char ch;
+};
+int main()
+{
+    union Data u;        // union variable
+    union Data *ptr;     // pointer to union
+    ptr = &u;            // assign address
+    printf("Enter an integer value: ");
+    scanf("%d", &ptr->num);   // store value using pointer
+    printf("\nAccessing through pointer:\n");
+    printf("Integer value = %d\n", ptr->num);
+    printf("Character value = %c\n", ptr->ch);
+    return 0;
+}
+```
 # Output:
+![alt text](<Screenshot 2025-12-26 232555.png>)
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
